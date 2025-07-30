@@ -9,6 +9,7 @@ import { useBoards } from "@/hooks/useBoards";
 import { TaskCard } from "@/components/TaskCard";
 import { CreateTaskDialog } from "@/components/CreateTaskDialog";
 import { DroppableColumn } from "@/components/DroppableColumn";
+import { AIAssistant } from "@/components/AIAssistant";
 import { Task, TaskStatus, TASK_STATUSES } from "@/types/board";
 import { toast } from "sonner";
 
@@ -103,6 +104,15 @@ export const BoardView = () => {
     toast.success("Задача удалена!");
   };
 
+  const handleCreateSprint = (sprintTasks: Task[]) => {
+    // Перемещаем задачи в колонку "В работе"
+    sprintTasks.forEach(task => {
+      if (task.status === 'todo') {
+        moveTask(board.id, task.id, 'in-progress');
+      }
+    });
+  };
+
   const renderColumn = (status: TaskStatus) => {
     const tasks = tasksByStatus[status];
     const statusInfo = TASK_STATUSES[status];
@@ -149,7 +159,14 @@ export const BoardView = () => {
           )}
         </div>
 
-        <DndContext 
+        <div className="mb-6">
+          <AIAssistant 
+            tasks={board.tasks} 
+            onCreateSprint={handleCreateSprint}
+          />
+        </div>
+
+        <DndContext
           onDragStart={handleDragStart} 
           onDragOver={handleDragOver}
           onDragEnd={handleDragEnd}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Board, Task, TaskStatus } from '@/types/board';
+import { Board, Task, TaskStatus, TaskPriority } from '@/types/board';
 
 const STORAGE_KEY = 'trello-boards';
 
@@ -53,12 +53,15 @@ export const useBoards = () => {
     saveBoards(boards.filter(board => board.id !== boardId));
   };
 
-  const createTask = (boardId: string, title: string, description?: string) => {
+  const createTask = (boardId: string, title: string, description?: string, priority: TaskPriority = 'medium', assignee?: string, estimatedHours?: number) => {
     const newTask: Task = {
       id: crypto.randomUUID(),
       title,
       description,
       status: 'todo',
+      priority,
+      assignee,
+      estimatedHours,
       createdAt: new Date(),
       updatedAt: new Date()
     };
