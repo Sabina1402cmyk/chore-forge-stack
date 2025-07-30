@@ -113,6 +113,7 @@ export const BoardView = () => {
         id={status}
         title={statusInfo.label}
         taskCount={tasks.length}
+        createTaskButton={<CreateTaskDialog onCreateTask={handleCreateTask(status)} />}
       >
         <SortableContext items={tasks.map(t => t.id)} strategy={verticalListSortingStrategy}>
           <div className="space-y-3 min-h-[200px]">
@@ -126,7 +127,6 @@ export const BoardView = () => {
             ))}
           </div>
         </SortableContext>
-        <CreateTaskDialog onCreateTask={handleCreateTask(status)} />
       </DroppableColumn>
     );
   };

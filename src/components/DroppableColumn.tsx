@@ -8,9 +8,10 @@ interface DroppableColumnProps {
   title: string;
   children: React.ReactNode;
   taskCount: number;
+  createTaskButton: React.ReactNode;
 }
 
-export const DroppableColumn = ({ id, title, children, taskCount }: DroppableColumnProps) => {
+export const DroppableColumn = ({ id, title, children, taskCount, createTaskButton }: DroppableColumnProps) => {
   const { isOver, setNodeRef } = useDroppable({
     id,
   });
@@ -29,18 +30,12 @@ export const DroppableColumn = ({ id, title, children, taskCount }: DroppableCol
             <span className="text-xs font-normal text-muted-foreground bg-background/50 px-2 py-1 rounded-full">
               {taskCount}
             </span>
-            {children && React.Children.toArray(children).find(child => 
-              React.isValidElement(child) && child.type && 
-              (child.type as any).displayName === 'CreateTaskDialog'
-            )}
+            {createTaskButton}
           </div>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
-        {React.Children.toArray(children).filter(child => 
-          !React.isValidElement(child) || !child.type || 
-          (child.type as any).displayName !== 'CreateTaskDialog'
-        )}
+        {children}
       </CardContent>
     </Card>
   );
