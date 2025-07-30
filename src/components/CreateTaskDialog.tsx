@@ -28,9 +28,8 @@ export const CreateTaskDialog = ({ onCreateTask }: CreateTaskDialogProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="sm" className="w-full justify-start text-muted-foreground hover:text-foreground hover:bg-accent/50">
-          <Plus className="h-4 w-4 mr-2" />
-          Добавить задачу
+        <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full">
+          <Plus className="h-4 w-4" />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md bg-gradient-card border-0 backdrop-blur-glass">
@@ -78,3 +77,6 @@ export const CreateTaskDialog = ({ onCreateTask }: CreateTaskDialogProps) => {
     </Dialog>
   );
 };
+
+// Add displayName for identification in DroppableColumn
+CreateTaskDialog.displayName = 'CreateTaskDialog';

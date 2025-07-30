@@ -1,3 +1,4 @@
+import React from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TaskStatus } from "@/types/board";
@@ -24,13 +25,22 @@ export const DroppableColumn = ({ id, title, children, taskCount }: DroppableCol
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-medium text-foreground flex items-center justify-between">
           <span>{title}</span>
-          <span className="text-xs font-normal text-muted-foreground bg-background/50 px-2 py-1 rounded-full">
-            {taskCount}
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-normal text-muted-foreground bg-background/50 px-2 py-1 rounded-full">
+              {taskCount}
+            </span>
+            {children && React.Children.toArray(children).find(child => 
+              React.isValidElement(child) && child.type && 
+              (child.type as any).displayName === 'CreateTaskDialog'
+            )}
+          </div>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
-        {children}
+        {React.Children.toArray(children).filter(child => 
+          !React.isValidElement(child) || !child.type || 
+          (child.type as any).displayName !== 'CreateTaskDialog'
+        )}
       </CardContent>
     </Card>
   );
