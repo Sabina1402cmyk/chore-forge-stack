@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 218 50% 97%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -17,16 +17,17 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 210 79% 46%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 210 100% 65%;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 214 32% 91%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 186 100% 94%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -34,7 +35,26 @@ All colors MUST be HSL.
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 210 79% 46%;
+
+    /* Task Board Colors */
+    --board-background: 210 100% 97%;
+    --column-background: 220 14% 96%;
+    --task-background: 0 0% 100%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210 79% 46%), hsl(210 100% 65%));
+    --gradient-background: linear-gradient(135deg, hsl(218 50% 97%), hsl(210 100% 97%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 14% 96%));
+    
+    /* Shadows */
+    --shadow-soft: 0 2px 10px -2px hsl(210 79% 46% / 0.1);
+    --shadow-medium: 0 4px 20px -4px hsl(210 79% 46% / 0.15);
+    --shadow-strong: 0 8px 30px -8px hsl(210 79% 46% / 0.2);
+    
+    /* Glass Effect */
+    --glass-background: hsl(0 0% 100% / 0.8);
+    --glass-border: hsl(210 79% 46% / 0.2);
 
     --radius: 0.5rem;
 
