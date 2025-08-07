@@ -9,7 +9,7 @@ import { useBoards } from "@/hooks/useBoards";
 import { TaskCard } from "@/components/TaskCard";
 import { CreateTaskDialog } from "@/components/CreateTaskDialog";
 import { DroppableColumn } from "@/components/DroppableColumn";
-import { AIAssistant } from "@/components/AIAssistant";
+import { FloatingAIButton } from "@/components/FloatingAIButton";
 import { Task, TaskStatus, TASK_STATUSES } from "@/types/board";
 import { toast } from "sonner";
 
@@ -159,12 +159,6 @@ export const BoardView = () => {
           )}
         </div>
 
-        <div className="mb-6">
-          <AIAssistant 
-            tasks={board.tasks} 
-            onCreateSprint={handleCreateSprint}
-          />
-        </div>
 
         <DndContext
           onDragStart={handleDragStart} 
@@ -186,6 +180,12 @@ export const BoardView = () => {
             ) : null}
           </DragOverlay>
         </DndContext>
+
+        {/* Floating AI Assistant Button */}
+        <FloatingAIButton 
+          tasks={board.tasks} 
+          onCreateSprint={handleCreateSprint}
+        />
       </div>
     </div>
   );
